@@ -1,0 +1,67 @@
+model ClientProfile {
+  id                Int                 @id @default(autoincrement())
+  ip                String              @unique
+  name              String
+  status            ClientProfileStatus
+  country_code      String
+  phone             String
+  email             String              @unique
+  verification_code String?
+  access_token      String?
+  created_at        DateTime            @default(now())
+  updated_at        DateTime            @updatedAt
+
+  // Relations
+  serviceRequests ServiceRequest[]
+  meetings        Meeting[]
+
+  @@unique([country_code, phone])
+  // New Prisma 6.x features
+  @@index([status, created_at])
+  @@index([country_code, phone])
+  @@index([email])
+  @@map("client_profile")
+}
+
+model ServiceRequestPage {
+  domain     String   @id
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // Relations
+  serviceRequests      ServiceRequest[]
+  notificationProfiles NotificationProfile[]
+
+  @@map("service_request_pages")
+}
+
+model NotificationProfile {
+  id    Int                     @id @default(autoincrement())
+  value String
+  type  NotificationProfileType
+
+  // Relations
+  serviceRequestPages ServiceRequestPage[]
+
+  @@unique([id, value])
+  @@map("notification_profiles")
+}
+
+model ServiceRequest {
+  id                Int      @id @default(autoincrement())
+  client_profile_id Int
+  name              String
+  email             String
+  phone             String
+  country_code      String
+  description       String   @db.LongText
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  // Relations
+  clientProfile             ClientProfile      @relation(fields: [client_profile_id], references: [id])
+  serviceRequestPage        ServiceRequestPage @relation(fields: [service_request_page_name], references: [domain])
+  service_request_page_name String
+
+  @@map("service_requests")
+}

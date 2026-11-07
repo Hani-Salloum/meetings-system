@@ -1,0 +1,48 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
+  "plugins": ["check-file", "n"],
+  "rules": {
+    "max-lines": ["warn", 700],
+    "@next/next/no-html-link-for-pages": "off",
+    "prefer-arrow-callback": ["error"],
+    "prefer-template": ["error"],
+    "semi": ["warn"],
+    "quotes": ["warn", "double"],
+    "n/no-process-env": ["error"],
+    "@typescript-eslint/no-explicit-any": ["off", {}],
+    "@typescript-eslint/no-unused-vars": ["warn", {}],
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "**/*.{ts,tsx}": "KEBAB_CASE"
+      },
+      {
+        "ignoreMiddleExtensions": true
+      }
+    ],
+    "check-file/folder-naming-convention": [
+      "error",
+      {
+        "src/**/!^[.*": "KEBAB_CASE"
+      }
+    ],
+    "react/jsx-no-literals": "warn",
+    "no-restricted-imports": [
+      "warn",
+      {
+        "name": "next/link",
+        "message": "Please import from `@/i18n/routing` instead."
+      },
+      {
+        "name": "next/navigation",
+        "importNames": [
+          "redirect",
+          "permanentRedirect",
+          // "useRouter",
+          "usePathname"
+        ],
+        "message": "Please import from `@/i18n/routing` instead."
+      }
+    ]
+  }
+}

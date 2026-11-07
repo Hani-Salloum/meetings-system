@@ -1,0 +1,79 @@
+model User {
+    id                      Int          @id @default(autoincrement())
+    first_name              String?
+    last_name               String?
+    email                   String       @unique
+    confirmed_email         Boolean      @default(false)
+    email_confirmation_code String?
+    active                  Boolean      @default(true)
+    password                String
+    reset_password_code     String?
+    available               Boolean      @default(false)
+    devices                 Device[]
+    language                UserLanguage @default(AR)
+    created_at              DateTime     @default(now())
+    updated_at              DateTime     @updatedAt
+    user_types              UserType[]   @relation("users_user_types")
+
+    // Relations
+    employeesAvailability EmployeesAvailability[]
+    meetings              Meeting[]
+
+    @@map("user")
+}
+
+model Device {
+    user_id        Int
+    user           User     @relation(fields: [user_id], references: [id])
+    fcmTokens      String?  @unique
+    auth_token     String   @id @unique
+    login_location String   @db.LongText
+    device_info    String   @db.LongText
+    created_at     DateTime @default(now())
+    updated_at     DateTime @updatedAt
+
+    @@map("device")
+}
+
+model UserType {
+    id          Int          @id @default(autoincrement())
+    name        String       @unique
+    permissions Permission[]
+    users       User[]       @relation("users_user_types")
+
+    @@map("user_type")
+}
+
+model PermissionCategory {
+    id             Int          @id @default(autoincrement())
+    en_name        String       @unique
+    ar_name        String?
+    en_description String?
+    ar_description String?
+    created_at     DateTime     @default(now())
+    updated_at     DateTime     @updatedAt
+    permissions    Permission[]
+
+    @@map("permission_categories")
+}
+
+model Permission {
+    id                     Int                 @id @default(autoincrement())
+    en_name                String
+    en_description         String?
+    ar_description         String?
+    ar_name                String?
+    code                   String
+    en_action              String?
+    ar_action              String?
+    UserType               UserType[]
+    permission_category_id Int?
+    permission_category    PermissionCategory? @relation(fields: [permission_category_id], references: [id])
+
+    @@map("permission")
+}
+
+enum UserLanguage {
+    AR
+    EN
+}

@@ -1,0 +1,14 @@
+model Service {
+    id             Int      @id @default(autoincrement())
+    ar_name        String
+    en_name        String
+    ar_description String?
+    en_description String?
+    created_at     DateTime @default(now())
+    updated_at     DateTime @updatedAt
+
+    // Relations
+    meetingRequestPages MeetingRequestPage[]
+
+    @@map("services")
+}

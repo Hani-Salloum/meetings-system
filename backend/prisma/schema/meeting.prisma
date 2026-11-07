@@ -1,0 +1,27 @@
+model Meeting {
+  id                            Int           @id @default(autoincrement())
+  client_profile_id             Int?
+  meeting_request_page_pathname String?
+  status                        MeetingStatus
+  guest_attendees               Json?
+  description                   String?       @db.LongText
+  start_at                      DateTime
+  end_at                        DateTime
+  duration                      Int // in minutes (start_at - end_at)
+  scheduled_by_user_id          Int?
+  created_at                    DateTime      @default(now())
+  updated_at                    DateTime      @updatedAt
+  participant_employees         Json?
+
+  // Relations
+  scheduled_by_user  User?               @relation(fields: [scheduled_by_user_id], references: [id])
+  clientProfile      ClientProfile?      @relation(fields: [client_profile_id], references: [id])
+  MeetingRequestPage MeetingRequestPage? @relation(fields: [meeting_request_page_pathname], references: [pathname])
+
+  // New Prisma 6.x features
+  @@index([status, start_at])
+  @@index([client_profile_id, status])
+  @@index([meeting_request_page_pathname, status])
+  @@index([start_at, end_at])
+  @@map("meetings")
+}

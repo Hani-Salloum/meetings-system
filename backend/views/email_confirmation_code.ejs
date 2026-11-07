@@ -1,0 +1,69 @@
+<div
+  style="
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  "
+>
+  <div dir="ltr">
+    <h2 style="text-align: center; color: #5f51ff">Email Confirmation</h2>
+    <p style="font-size: 16px; color: #333">Hello <%= name %>,</p>
+    <p style="font-size: 16px; color: #333">
+      Thank you for registering with us. Please use the following code to confirm your email
+      address:
+    </p>
+    <div style="text-align: center; margin: 20px 0">
+      <span
+        style="
+          font-size: 24px;
+          font-weight: bold;
+          color: #5f51ff;
+          border: 1px solid #5f51ff;
+          padding: 10px 20px;
+          border-radius: 5px;
+        "
+      >
+        <%= confirmationCode %>
+      </span>
+    </div>
+    <p style="font-size: 16px; color: #333">
+      If you did not request this code, please ignore this email.
+    </p>
+    <p style="font-size: 16px; color: #333">
+      Best regards,<br />
+      The Team
+    </p>
+  </div>
+
+  <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd" />
+
+  <h2 style="text-align: center; color: #5f51ff">تأكيد البريد الإلكتروني</h2>
+  <p style="font-size: 16px; color: #333">مرحبًا <%= name %>,</p>
+  <p style="font-size: 16px; color: #333">
+    شكرًا لتسجيلك معنا. يرجى استخدام الرمز التالي لتأكيد عنوان بريدك الإلكتروني:
+  </p>
+  <div style="text-align: center; margin: 20px 0">
+    <span
+      style="
+        font-size: 24px;
+        font-weight: bold;
+        color: #5f51ff;
+        border: 1px solid #5f51ff;
+        padding: 10px 20px;
+        border-radius: 5px;
+      "
+    >
+      <%= confirmationCode %>
+    </span>
+  </div>
+  <p style="font-size: 16px; color: #333">
+    إذا لم تطلب هذا الرمز، يرجى تجاهل هذا البريد الإلكتروني.
+  </p>
+  <p style="font-size: 16px; color: #333">
+    أطيب التحيات،<br />
+    الفريق
+  </p>
+</div>

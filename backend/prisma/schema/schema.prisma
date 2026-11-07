@@ -1,0 +1,20 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  binaryTargets   = ["native", "rhel-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// This schema file is now modular and split into separate files:
+// - enums.prisma: All enum definitions
+// - client.prisma: Client-related models
+// - employee.prisma: Employee-related models  
+// - project.prisma: Project-related models
+// - meeting.prisma: Meeting-related models
+//
+// To use this modular approach, you'll need to combine these files
+// or use a build script to merge them into a single schema.prisma file.

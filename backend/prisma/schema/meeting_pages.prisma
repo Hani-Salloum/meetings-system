@@ -1,0 +1,47 @@
+model MeetingRequestPage {
+  id                Int                      @id @default(autoincrement())
+  title             String
+  pathname          String                   @unique
+  service_id        Int
+  description       String?                  @db.LongText
+  image             String?
+  status            ProjectRequestPageStatus
+  duration          Int // in minutes
+  maximum_attendees Int
+  created_at        DateTime                 @default(now())
+  updated_at        DateTime                 @updatedAt
+
+  // Relations
+  service                  Service                   @relation(fields: [service_id], references: [id])
+  meetings                 Meeting[]
+  meetingParticipantGroups MeetingParticipantGroup[]
+
+  // New Prisma 6.x features
+  @@index([status, duration])
+  @@index([service_id, status])
+  @@index([pathname, status])
+  @@map("meeting_request_pages")
+}
+
+model MeetingParticipantGroup {
+  id                      Int @id @default(autoincrement())
+  meeting_request_page_id Int
+
+  // Relations
+  meetingRequestPage                      MeetingRequestPage                       @relation(fields: [meeting_request_page_id], references: [id])
+  meetingMeetingParticipantGroupEmployees MeetingMeetingParticipantGroupEmployee[]
+
+  @@map("projects_meeting_participant_groups")
+}
+
+model MeetingMeetingParticipantGroupEmployee {
+  meeting_meeting_participant_group_id Int
+  employee_id                          Int
+  required                             Boolean
+
+  // Relations
+  meetingMeetingParticipantGroup MeetingParticipantGroup @relation(fields: [meeting_meeting_participant_group_id], references: [id])
+
+  @@id([meeting_meeting_participant_group_id, employee_id])
+  @@map("projects_meeting_participant_group_employees")
+}

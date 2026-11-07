@@ -1,0 +1,31 @@
+model EmployeesAvailability {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  week_day   WeekDay
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // Relations
+  employeesAvailabilityHours EmployeesAvailabilityHours[]
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@unique([user_id, week_day])
+  // New Prisma 6.x features
+  @@index([user_id, week_day])
+  @@index([week_day])
+  @@map("employees_availability")
+}
+
+model EmployeesAvailabilityHours {
+  id                       Int     @id @default(autoincrement())
+  employee_availability_id Int
+  day_part                 DayPart
+
+  // Relations
+  employeeAvailability EmployeesAvailability @relation(fields: [employee_availability_id], references: [id])
+
+  // New Prisma 6.x features
+  @@index([employee_availability_id, day_part])
+  @@map("employees_availability_hours")
+}

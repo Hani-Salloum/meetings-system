@@ -1,0 +1,183 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title><%= title || 'Document' %></title>
+<link rel="stylesheet" href="/public/css/output.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  * {
+    font-family: "Cairo", sans-serif;
+  }
+
+  body {
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    background-color: #f4f7ff;
+    background-image: url("https://installations-system-api-testing.suleiman.rs4it.com/imgs/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  .card {
+    border-radius: 20px;
+    background-color: white;
+    padding: 70px;
+    max-width: 740px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    direction: rtl;
+  }
+
+  h1 {
+    color: #1f1f1f;
+    font-size: 28px;
+    line-height: 52.47px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 11px;
+  }
+
+  h4 {
+    font-weight: 700;
+    color: #666666;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: justify;
+  }
+
+  p {
+    color: #666666;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: justify;
+  }
+
+  .footer {
+    margin-top: 35px;
+    display: block;
+    text-align: center;
+    max-height: 110px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer img {
+    object-fit: contain;
+    max-height: 100px;
+  }
+
+  .email-button {
+    padding: 12px;
+    color: white;
+    background: #5f51ff;
+    border-radius: 70px;
+    min-width: 200px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .terms {
+    display: block;
+    text-align: center;
+  }
+
+  .terms p {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    text-decoration: underline;
+    color: #9ca0a8;
+  }
+
+  .terms p.separator {
+    margin: 0 6px;
+    color: #9ca0a8;
+  }
+
+  .header {
+    text-align: center;
+    background-color: #3026e9d9;
+    color: white;
+    padding: 0.5px 0;
+    border-radius: 40px;
+  }
+
+  .header h1 {
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .card {
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .email-button {
+      min-width: 150px;
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .footer img {
+      object-fit: contain;
+      max-height: 100px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card {
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .email-button {
+      min-width: 120px;
+      font-size: 14px;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    .footer {
+      margin-top: 35px;
+      display: block;
+      text-align: center;
+      max-height: 110px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer img {
+      object-fit: contain;
+      max-height: 100px;
+    }
+  }
+</style>

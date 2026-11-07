@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-arabic",
+    "aaron-bond.better-comments",
+    "antiantisepticeye.vscode-color-picker",
+    "bradlc.vscode-tailwindcss",
+    "antfu.iconify"
+  ]
+}
